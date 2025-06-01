@@ -32,6 +32,12 @@ const Navigation = () => {
             >
               الرئيسية
             </Link>
+            <Link 
+              to="/about" 
+              className={`hover:text-orange-600 transition-colors ${location.pathname === '/about' ? 'text-orange-600 font-semibold' : ''}`}
+            >
+              من نحن
+            </Link>
             {categories.map((category) => (
               <Link
                 key={category.id}
@@ -41,6 +47,12 @@ const Navigation = () => {
                 {category.name}
               </Link>
             ))}
+            <Link 
+              to="/admin" 
+              className={`hover:text-orange-600 transition-colors ${location.pathname === '/admin' ? 'text-orange-600 font-semibold' : ''}`}
+            >
+              لوحة التحكم
+            </Link>
           </div>
 
           {/* Cart & Mobile Menu Button */}
@@ -78,6 +90,13 @@ const Navigation = () => {
               >
                 الرئيسية
               </Link>
+              <Link 
+                to="/about" 
+                className={`block py-2 px-4 hover:bg-orange-50 rounded ${location.pathname === '/about' ? 'text-orange-600 font-semibold bg-orange-50' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                من نحن
+              </Link>
               {categories.map((category) => (
                 <Link
                   key={category.id}
@@ -88,6 +107,13 @@ const Navigation = () => {
                   {category.name}
                 </Link>
               ))}
+              <Link 
+                to="/admin" 
+                className={`block py-2 px-4 hover:bg-orange-50 rounded ${location.pathname === '/admin' ? 'text-orange-600 font-semibold bg-orange-50' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                لوحة التحكم
+              </Link>
             </div>
           </div>
         )}
