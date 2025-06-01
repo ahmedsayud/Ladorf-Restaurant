@@ -7,9 +7,21 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import CategoryManager from '@/components/admin/CategoryManager';
 import ProductManager from '@/components/admin/ProductManager';
-import { Shield } from 'lucide-react';
+import AdminAuth from '@/components/admin/AdminAuth';
+import { Shield, LogOut } from 'lucide-react';
 
 const AdminPage = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
+  // إذا لم يتم التحقق من كلمة السر، اعرض شاشة تسجيل الدخول
+  if (!isAuthenticated) {
+    return <AdminAuth onAuthenticated={() => setIsAuthenticated(true)} />;
+  }
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -22,6 +34,15 @@ const AdminPage = () => {
               <h1 className="text-3xl md:text-4xl font-bold font-amiri text-orange-600">
                 لوحة التحكم
               </h1>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogout}
+                className="mr-4 text-red-600 border-red-600 hover:bg-red-50"
+              >
+                <LogOut className="h-4 w-4 ml-2" />
+                خروج
+              </Button>
             </div>
             <p className="text-gray-600">إدارة الأقسام والمنتجات</p>
           </div>
