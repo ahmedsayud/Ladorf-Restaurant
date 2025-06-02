@@ -92,6 +92,16 @@ export const products: Product[] = [
   { id: 'kunafa-2', name: 'كنافة شوكولاتة', price: 50, categoryId: 'kunafa' },
   { id: 'kunafa-3', name: 'كنافة ميكس', price: 60, categoryId: 'kunafa' },
 
+  // السلطات
+  { id: 'salads-1', name: 'سلطة خضراء', price: 45, categoryId: 'salads' },
+  { id: 'salads-2', name: 'سلطة يونانية', price: 55, categoryId: 'salads' },
+  { id: 'salads-3', name: 'سلطة فتوش', price: 50, categoryId: 'salads' },
+  { id: 'salads-4', name: 'سلطة تبولة', price: 48, categoryId: 'salads' },
+  { id: 'salads-5', name: 'سلطة زيتون', price: 42, categoryId: 'salads' },
+  { id: 'salads-6', name: 'سلطة طحينة', price: 40, categoryId: 'salads' },
+  { id: 'salads-7', name: 'سلطة جرجير', price: 38, categoryId: 'salads' },
+  { id: 'salads-8', name: 'سلطة كولسلو', price: 45, categoryId: 'salads' },
+
   // المعصوب
   { id: 'masoob-1', name: 'معصوب كوكتيل', price: 85, categoryId: 'masoob' },
   { id: 'masoob-2', name: 'معصوب ملكي', price: 90, categoryId: 'masoob' },

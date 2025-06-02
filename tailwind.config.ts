@@ -66,6 +66,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// إضافة الألوان الجديدة
+				ladorf: {
+					50: '#fefaf7',
+					100: '#fcf6ec',
+					200: '#f7e9c8',
+					300: '#f1dca4',
+					400: '#e7c565',
+					500: '#dcbc7b',
+					600: '#c8a864',
+					700: '#b39450',
+					800: '#9e803c',
+					900: '#7a5f28'
 				}
 			},
 			borderRadius: {

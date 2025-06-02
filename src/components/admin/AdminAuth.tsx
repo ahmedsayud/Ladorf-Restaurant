@@ -36,12 +36,12 @@ const AdminAuth = ({ onAuthenticated }: AdminAuthProps) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-red-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ladorf-50 to-ladorf-100 px-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Lock className="h-8 w-8 text-orange-600" />
-            <CardTitle className="text-2xl font-bold font-amiri text-orange-600">
+            <Lock className="h-8 w-8 text-ladorf-600" />
+            <CardTitle className="text-2xl font-bold font-amiri text-ladorf-600">
               دخول لوحة التحكم
             </CardTitle>
           </div>
@@ -64,7 +64,7 @@ const AdminAuth = ({ onAuthenticated }: AdminAuthProps) => {
             </div>
             <Button 
               type="submit" 
-              className="w-full bg-orange-600 hover:bg-orange-700"
+              className="w-full bg-ladorf-600 hover:bg-ladorf-700"
               disabled={isLoading}
             >
               {isLoading ? 'جاري التحقق...' : 'دخول'}

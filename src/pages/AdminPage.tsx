@@ -30,8 +30,8 @@ const AdminPage = () => {
         <div className="container mx-auto">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <Shield className="h-8 w-8 text-orange-600" />
-              <h1 className="text-3xl md:text-4xl font-bold font-amiri text-orange-600">
+              <Shield className="h-8 w-8 text-ladorf-600" />
+              <h1 className="text-3xl md:text-4xl font-bold font-amiri text-ladorf-600">
                 لوحة التحكم
               </h1>
               <Button

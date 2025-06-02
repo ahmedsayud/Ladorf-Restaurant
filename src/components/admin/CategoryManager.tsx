@@ -66,7 +66,7 @@ const CategoryManager = () => {
         <h2 className="text-2xl font-bold">الأقسام</h2>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-orange-600 hover:bg-orange-700">
+            <Button className="bg-ladorf-600 hover:bg-ladorf-700">
               <Plus className="h-4 w-4 ml-2" />
               إضافة قسم جديد
             </Button>
@@ -101,7 +101,7 @@ const CategoryManager = () => {
                   currentImage={formData.image}
                 />
               </div>
-              <Button onClick={handleAddCategory} className="w-full bg-orange-600 hover:bg-orange-700">
+              <Button onClick={handleAddCategory} className="w-full bg-ladorf-600 hover:bg-ladorf-700">
                 إضافة القسم
               </Button>
             </div>
@@ -124,11 +124,11 @@ const CategoryManager = () => {
               {categories.map((category) => (
                 <TableRow key={category.id}>
                   <TableCell>
-                    <div className="w-12 h-12 bg-orange-100 rounded flex items-center justify-center">
+                    <div className="w-12 h-12 bg-ladorf-100 rounded flex items-center justify-center">
                       {category.image ? (
                         <img src={category.image} alt={category.name} className="w-full h-full object-cover rounded" />
                       ) : (
-                        <Image className="h-6 w-6 text-orange-600" />
+                        <Image className="h-6 w-6 text-ladorf-600" />
                       )}
                     </div>
                   </TableCell>
@@ -191,7 +191,7 @@ const CategoryManager = () => {
                 currentImage={formData.image}
               />
             </div>
-            <Button onClick={handleEditCategory} className="w-full bg-orange-600 hover:bg-orange-700">
+            <Button onClick={handleEditCategory} className="w-full bg-ladorf-600 hover:bg-ladorf-700">
               حفظ التعديلات
             </Button>
           </div>
