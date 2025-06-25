@@ -1,6 +1,5 @@
-
-import React from 'react';
-import { MapPin, Phone, Clock } from 'lucide-react';
+import React from "react";
+import { MapPin, Phone, Clock } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -9,10 +8,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo and Description */}
           <div>
-            <h3 className="text-2xl font-bold font-amiri mb-4 text-orange-500">مطعم لاورف</h3>
+            <h3 className="text-2xl font-bold font-amiri mb-4">مطعم لادورف</h3>
             <p className="text-gray-300 leading-relaxed">
-              نقدم لكم أشهى الأطباق الشرقية والعربية بنكهات أصيلة ومذاق لا يُنسى.
-              نحن نسعى لتقديم تجربة طعام استثنائية لجميع عملائنا الكرام.
+              نقدم لكم أشهى الأطباق الشرقية والعربية بنكهات أصيلة ومذاق لا
+              يُنسى. نحن نسعى لتقديم تجربة طعام استثنائية لجميع عملائنا الكرام.
             </p>
           </div>
 
@@ -21,18 +20,36 @@ const Footer = () => {
             <h4 className="text-xl font-semibold mb-4">معلومات التواصل</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3 space-x-reverse">
-                <MapPin className="h-5 w-5 text-orange-500 mt-1 flex-shrink-0" />
+                <a
+                  href="https://maps.app.goo.gl/j1MZoCWf2xqyGrdc6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start space-x-3 space-x-reverse"
+                >
+                  <MapPin className="h-5 w-5 text-ladorf-800 mt-1 flex-shrink-0" />
+                  <p className="text-gray-300 hover:text-ladorf-800">
+                    المنصورة – حي الجامعة – شارع الإيمان – متفرع من شارع جيهان
+                  </p>
+                </a>
+              </div>
+              <div className="flex items-center space-x-3 space-x-reverse">
+                <Phone className="h-5 w-5 text-ladorf-800" />
+                <a
+                  href="https://wa.me/201020565509"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-ladorf-800"
+                  dir="ltr"
+                >
+                  01020565509
+                </a>
+              </div>
+
+              <div className="flex items-center space-x-3 space-x-reverse">
+                <Clock className="h-5 w-5 text-ladorf-800" />
                 <p className="text-gray-300">
-                  المنصورة – حي الجامعة – شارع الإيمان – متفرع من شارع جيهان
+                  مفتوح يومياً من 12 صباحاً إلى 12 منتصف الليل
                 </p>
-              </div>
-              <div className="flex items-center space-x-3 space-x-reverse">
-                <Phone className="h-5 w-5 text-orange-500" />
-                <p className="text-gray-300" dir="ltr">01020565509</p>
-              </div>
-              <div className="flex items-center space-x-3 space-x-reverse">
-                <Clock className="h-5 w-5 text-orange-500" />
-                <p className="text-gray-300">مفتوح يومياً من 10 صباحاً إلى 12 منتصف الليل</p>
               </div>
             </div>
           </div>
@@ -41,17 +58,29 @@ const Footer = () => {
           <div>
             <h4 className="text-xl font-semibold mb-4">روابط سريعة</h4>
             <div className="space-y-2">
-              <a href="/" className="block text-gray-300 hover:text-orange-500 transition-colors">
+              <a
+                href="/"
+                className="block text-gray-300 hover:text-ladorf-800 transition-colors"
+              >
                 الصفحة الرئيسية
               </a>
-              <a href="/category/chicken" className="block text-gray-300 hover:text-orange-500 transition-colors">
+              <a
+                href="/category/chicken"
+                className="block text-gray-300 hover:text-ladorf-800 transition-colors"
+              >
                 أطباق الدجاج
               </a>
-              <a href="/category/meat" className="block text-gray-300 hover:text-orange-500 transition-colors">
+              <a
+                href="/category/meat"
+                className="block text-gray-300 hover:text-ladorf-800 transition-colors"
+              >
                 أطباق اللحوم
               </a>
-              <a href="/cart" className="block text-gray-300 hover:text-orange-500 transition-colors">
-                عربة التسوق
+              <a
+                href="/cart"
+                className="block text-gray-300 hover:text-ladorf-800 transition-colors "
+              >
+                عرض الطلب
               </a>
             </div>
           </div>
@@ -59,7 +88,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 مطعم لاورف. جميع الحقوق محفوظة.
+            جميع الحقوق محفوظة. © 2025 مطعم لادورف. 
           </p>
         </div>
       </div>

@@ -1,40 +1,39 @@
-
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Lock } from 'lucide-react';
-import { toast } from 'sonner';
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Lock } from "lucide-react";
+import { toast } from "sonner";
+import axios from "axios";
+import { BASE_URL } from '../api/ConfigApi';
 
 interface AdminAuthProps {
   onAuthenticated: () => void;
 }
 
 const AdminAuth = ({ onAuthenticated }: AdminAuthProps) => {
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // كلمة السر الافتراضية - يمكن تغييرها هنا
-  const ADMIN_PASSWORD = 'admin123';
-
-  const handleSubmit = (e: React.FormEvent) => {
+  
+  function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    setIsLoading(true);
 
-    // محاكاة تحقق من كلمة السر
-    setTimeout(() => {
-      if (password === ADMIN_PASSWORD) {
-        toast.success('تم تسجيل الدخول بنجاح');
+    axios
+      .post(`${BASE_URL}/api/admin/login`, { email, password })
+
+      .then((res) => {
+        localStorage.setItem("adminToken", res.data.data.token);
+        toast.success("تم تسجيل الدخول بنجاح");
         onAuthenticated();
-      } else {
-        toast.error('كلمة السر غير صحيحة');
-        setPassword('');
-      }
-      setIsLoading(false);
-    }, 500);
-  };
-
+      })
+      .catch((err) => {
+        toast.error("كلمة السر غير صحيحة");
+        setPassword("");
+      });
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ladorf-50 to-ladorf-100 px-4">
       <Card className="w-full max-w-md shadow-lg">
@@ -48,7 +47,21 @@ const AdminAuth = ({ onAuthenticated }: AdminAuthProps) => {
           <p className="text-gray-600">يرجى إدخال كلمة السر للمتابعة</p>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">الايميل</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="أدخل الايميل"
+                required
+                className="text-right"
+                disabled={isLoading}
+              />
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="password">كلمة السر</Label>
               <Input
@@ -62,17 +75,15 @@ const AdminAuth = ({ onAuthenticated }: AdminAuthProps) => {
                 disabled={isLoading}
               />
             </div>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="w-full bg-ladorf-600 hover:bg-ladorf-700"
               disabled={isLoading}
             >
-              {isLoading ? 'جاري التحقق...' : 'دخول'}
+              {isLoading ? "جاري التحقق..." : "دخول"}
             </Button>
           </form>
-          <div className="mt-4 p-3 bg-gray-100 rounded text-sm text-gray-600 text-center">
-            <strong>ملاحظة:</strong> كلمة السر الافتراضية هي: admin123
-          </div>
+          
         </CardContent>
       </Card>
     </div>

@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.env
+
+# تجاهل ملف إعدادات API
+src/components/api/ConfigApi.tsx

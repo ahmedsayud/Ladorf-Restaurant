@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -9,7 +8,8 @@ import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getCart, updateCartItem, deleteCartItem, placeOrder } from '@/components/api/CartApi';
 
 const CartPage = () => {
   const { items, total, updateQuantity, removeItem, clearCart } = useCart();
@@ -19,50 +19,128 @@ const CartPage = () => {
     phone: '',
     address: ''
   });
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [orderNotes, setOrderNotes] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('cash');
+  const [discount, setDiscount] = useState(0);
 
-  const handleQuantityChange = (productId: string, newQuantity: number) => {
-    if (newQuantity >= 0) {
-      updateQuantity(productId, newQuantity);
-    }
+  // دالة polling لجلب السلة عدة مرات بعد التعديل أو الحذف
+  const refetchCartWithPolling = (retries = 3, delay = 700) => {
+    let count = 0;
+    const poll = () => {
+      fetchCart();
+      count++;
+      if (count < retries) {
+        setTimeout(poll, delay);
+      }
+    };
+    poll();
   };
 
-  const handleRemoveItem = (productId: string) => {
-    removeItem(productId);
-    toast({
-      title: "تم حذف المنتج",
-      description: "تم حذف المنتج من عربة التسوق",
-    });
-  };
-
-  const handleSubmitOrder = () => {
-    if (!customerInfo.name || !customerInfo.phone) {
-      toast({
-        title: "معلومات مطلوبة",
-        description: "الرجاء إدخال الاسم ورقم الهاتف",
-        variant: "destructive"
-      });
+  const handleQuantityChange = async (cartItemId, newQuantity) => {
+    if (newQuantity <= 0) {
+      await handleRemoveItem(cartItemId);
       return;
     }
-
-    const orderDetails = {
-      items,
-      total,
-      customerInfo,
-      timestamp: new Date().toLocaleString('ar-EG')
-    };
-
-    console.log('Order submitted:', orderDetails);
-    
-    toast({
-      title: "تم إرسال الطلب بنجاح",
-      description: "سيتم التواصل معك قريباً لتأكيد الطلب",
-    });
-
-    clearCart();
-    setCustomerInfo({ name: '', phone: '', address: '' });
+    // تحديث سريع للواجهة
+    setCartItems(prev =>
+      prev.map(item =>
+        item.item_id === cartItemId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+    setCartTotal(
+      cartItems.reduce(
+        (sum, item) =>
+          sum +
+          (item.item_id === cartItemId
+            ? Number(item.price) * newQuantity
+            : Number(item.price) * Number(item.quantity)),
+        0
+      )
+    );
+    try {
+      await updateCartItem(cartItemId, newQuantity);
+      setTimeout(fetchCart, 700); // جلب السلة بعد العملية للتأكد
+      toast({ title: 'تم تحديث الكمية بنجاح' });
+    } catch (error) {
+      // setTimeout(fetchCart, 700);
+      if (error?.response?.status >= 400) {
+        toast({ title: 'خطأ في تحديث الكمية', variant: 'destructive' });
+      }
+    }
   };
 
-  if (items.length === 0) {
+  const handleRemoveItem = async (cartItemId) => {
+    // تحديث سريع للواجهة
+    setCartItems(prev => prev.filter(item => item.item_id !== cartItemId));
+    setCartTotal(
+      cartItems
+        .filter(item => item.item_id !== cartItemId)
+        .reduce((sum, item) => sum + Number(item.price) * Number(item.quantity), 0)
+    );
+    try {
+      await deleteCartItem(cartItemId);
+      setTimeout(fetchCart, 700);
+      toast({ title: 'تم حذف المنتج من السلة' });
+    } catch (error) {
+      // setTimeout(fetchCart, 700);
+      if (error?.response?.status >= 400) {
+        toast({ title: 'خطأ في حذف المنتج', variant: 'destructive' });
+      }
+    }
+  };
+
+  const handlePlaceOrder = async () => {
+    try {
+      await placeOrder({ shipping_address: customerInfo.address });
+      toast({ title: 'تم إرسال الطلب بنجاح!' });
+      clearCart();
+      navigate('/'); // يمكنك تغييره لصفحة شكر
+    } catch (error) {
+      toast({ title: 'حدث خطأ أثناء إرسال الطلب', variant: 'destructive' });
+    }
+  };
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      setLoading(true);
+      try {
+        const response = await getCart();
+        const items = response.data.cart || [];
+        const total = items.reduce((sum, item) => sum + Number(item.total_price || (item.price * item.quantity)), 0);
+        setCartItems(items);
+        setCartTotal(total);
+      } catch (error) {
+        setCartItems([]);
+        setCartTotal(0);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCart();
+  }, []);
+
+  useEffect(() => {
+    const total = cartItems.reduce(
+      (sum, item) => sum + Number(item.price) * Number(item.quantity),
+      0
+    );
+    setCartTotal(total);
+  }, [cartItems]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <span>جاري تحميل السلة...</span>
+      </div>
+    );
+  }
+
+  if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
@@ -72,7 +150,7 @@ const CartPage = () => {
             <h1 className="text-2xl font-bold text-gray-800 mb-4">عربة التسوق فارغة</h1>
             <p className="text-gray-600 mb-8">لم تقم بإضافة أي منتجات بعد</p>
             <Link to="/">
-              <Button className="bg-orange-600 hover:bg-orange-700">
+              <Button className="bg-ladorf-600 hover:bg-ladorf-800">
                 تصفح المنتجات
               </Button>
             </Link>
@@ -96,12 +174,12 @@ const CartPage = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="flex justify-between items-center">
-                  <span>منتجاتك ({items.length})</span>
+                  <span>منتجاتك ({cartItems.length})</span>
                   <Button 
                     variant="outline" 
                     size="sm" 
                     onClick={clearCart}
-                    className="text-red-600 hover:text-red-700"
+                    className=""
                   >
                     <Trash2 className="h-4 w-4 ml-2" />
                     إفراغ العربة
@@ -109,10 +187,10 @@ const CartPage = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {items.map((item) => (
+                {cartItems.map((item) => (
                   <div key={item.id} className="flex items-center justify-between p-4 border rounded-lg">
                     <div className="flex-1">
-                      <h3 className="font-semibold">{item.name}</h3>
+                      <h3 className="font-semibold">{item.item?.name || 'منتج بدون اسم'}</h3>
                       <p className="text-gray-600">{item.price} جنيه</p>
                     </div>
                     
@@ -120,7 +198,7 @@ const CartPage = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                        onClick={() => handleQuantityChange(item.item_id, item.quantity - 1)}
                       >
                         <Minus className="h-4 w-4" />
                       </Button>
@@ -130,7 +208,7 @@ const CartPage = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                        onClick={() => handleQuantityChange(item.item_id, item.quantity + 1)}
                       >
                         <Plus className="h-4 w-4" />
                       </Button>
@@ -138,15 +216,14 @@ const CartPage = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => handleRemoveItem(item.id)}
-                        className="text-red-600 hover:text-red-700"
+                        onClick={() => handleRemoveItem(item.item_id)}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                     
-                    <div className="text-left ml-4">
-                      <span className="font-bold">{item.price * item.quantity} جنيه</span>
+                    <div className="text-left mr-4">
+                      <span className="font-bold">{Number(item.price) * Number(item.quantity)} جنيه</span>
                     </div>
                   </div>
                 ))}
@@ -178,7 +255,7 @@ const CartPage = () => {
                     id="phone"
                     value={customerInfo.phone}
                     onChange={(e) => setCustomerInfo(prev => ({ ...prev, phone: e.target.value }))}
-                    placeholder="01234567890"
+                    placeholder="01020565509"
                     dir="ltr"
                   />
                 </div>
@@ -192,6 +269,7 @@ const CartPage = () => {
                     placeholder="أدخل عنوانك"
                   />
                 </div>
+                
               </CardContent>
             </Card>
 
@@ -203,7 +281,7 @@ const CartPage = () => {
               <CardContent className="space-y-4">
                 <div className="flex justify-between text-lg">
                   <span>المجموع الفرعي:</span>
-                  <span>{total} جنيه</span>
+                  <span>{cartTotal} جنيه</span>
                 </div>
                 
                 <div className="flex justify-between text-lg">
@@ -215,19 +293,14 @@ const CartPage = () => {
                 
                 <div className="flex justify-between text-xl font-bold">
                   <span>المجموع الكلي:</span>
-                  <span className="text-orange-600">{total} جنيه</span>
+                  <span >{cartTotal} جنيه</span>
                 </div>
-                
-                <Button 
-                  onClick={handleSubmitOrder}
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-lg py-3"
+                <Button
+                  className="w-full bg-ladorf-600 hover:bg-ladorf-700 text-white mt-4"
+                  onClick={handlePlaceOrder}
                 >
                   تأكيد الطلب
                 </Button>
-                
-                <p className="text-sm text-gray-600 text-center">
-                  سيتم التواصل معك عبر الهاتف لتأكيد الطلب
-                </p>
               </CardContent>
             </Card>
           </div>

@@ -6,9 +6,12 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section className="hero-gradient text-white py-20 px-4">
+    <section className="relative bg-[url('/assets/96.png')] bg-cover bg-center bg-[rgpa(0,0,0, .5)]  text-white py-20 px-4">
+        <div className="absolute inset-0 bg-black/20"></div>
+
       <div className="container mx-auto text-center">
-        <div className="max-w-4xl mx-auto">
+        
+        <div className="relative z-10 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold font-amiri mb-6 animate-fade-in">
             أهلاً بكم في مطعم لادورف
           </h1>
@@ -23,7 +26,7 @@ const HeroSection = () => {
               </Button>
             </Link>
             <Link to="/cart">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-ladorf-800 text-lg px-8 py-3">
+              <Button size="lg" variant="outline" className="border-white text-black hover:bg-white hover:text-ladorf-800 text-lg px-8 py-3">
                 عربة الطلب
               </Button>
             </Link>
