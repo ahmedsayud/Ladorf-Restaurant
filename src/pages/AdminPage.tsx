@@ -12,7 +12,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import OrderManager from '@/components/admin/OrderManager';
-import { BASE_URL } from '../components/api/ConfigApi';
+import { BASE_URL } from '@/components/api/ConfigApi';
 
 const AdminPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { BASE_URL } from '../components/api/ConfigApi';
+import { BASE_URL } from '@/components/api/ConfigApi';
 import ProductCard from '../components/ProductCard';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
