@@ -134,7 +134,7 @@ const Navigation = () => {
               >
                 من نحن
               </Link>
-              {categories.map((category) => (
+              {/* {categories.map((category) => (
                 <Link
                   key={category.id}
                   to={`/category/${category.id}`}
@@ -143,7 +143,7 @@ const Navigation = () => {
                 >
                   {category.name}
                 </Link>
-              ))}
+              ))} */}
               <Link 
                 to="/admin" 
                 className={`block py-2 px-4 hover:bg-orange-50 rounded ${location.pathname === '/admin' ? 'text-ladorf-800 font-semibold bg-orange-50' : ''}`}

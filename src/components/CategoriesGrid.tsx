@@ -107,25 +107,25 @@ const CategoriesGrid = () => {
 
               return (
                 <Link key={category.id} to={`/category/${category.id}`}>
-                  <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+                  <Card className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer rounded-lg">
                     <CardContent className="p-0">
-                      <div className="relative h-48 overflow-hidden rounded-t-lg">
+                      <div className="relative h-48 overflow-hidden rounded-lg flex items-center justify-center">
                         {imageUrl && (
                           <img 
                             src={imageUrl}
                             alt={category.attributes?.name || category.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 rounded-lg"
                           />
                         )}
-                        <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
-                      </div>
-                      <div className="p-6 text-center">
-                        <h3 className="font-bold text-lg mb-2 group-hover:text-ladorf-600 transition-colors">
-                          {category.attributes?.name || category.name}
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          {category.attributes?.description || category.description}
-                        </p>
+                        <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-300 rounded-lg"></div>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-2 rounded-lg">
+                          <h3 className="font-bold text-lg mb-2 text-white drop-shadow-lg group-hover:text-ladorf-300 transition-colors font-amiri">
+                            {category.attributes?.name || category.name}
+                          </h3>
+                          <p className="text-white text-sm drop-shadow-lg">
+                            {category.attributes?.description || category.description}
+                          </p>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>

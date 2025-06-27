@@ -19,7 +19,7 @@ const HeroSection = () => {
             نقدم لكم أشهى الأطباق الشرقية والعربية بنكهات أصيلة ومذاق لا يُنسى
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-            <Link to="/category/chicken">
+            <Link to="/categories">
               <Button size="lg" className="bg-white text-ladorf-800 hover:bg-gray-100 text-lg px-8 py-3">
                 تصفح القائمة
                 <ArrowLeft className="mr-2 h-5 w-5" />
