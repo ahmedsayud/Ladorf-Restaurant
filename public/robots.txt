@@ -1,14 +1,56 @@
+# ملف robots.txt لموقع مطعم لادورف
+# هذا الملف يوجه محركات البحث حول كيفية فهرسة الموقع
+
+# السماح لجميع محركات البحث بفهرسة الموقع
+User-agent: *
+Allow: /
+
+# إعدادات خاصة لمحرك بحث جوجل
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
+# إعدادات خاصة لمحرك بحث بينج
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
+# إعدادات خاصة لروبوتات وسائل التواصل الاجتماعي
 User-agent: Twitterbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: facebookexternalhit
 Allow: /
+Crawl-delay: 1
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+Crawl-delay: 1
+
+# منع فهرسة صفحات الإدارة والملفات الخاصة
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /assets/*.js$
+Disallow: /assets/*.css$
+
+# السماح بفهرسة الصور والملفات المهمة
+Allow: /assets/*.png
+Allow: /assets/*.jpg
+Allow: /assets/*.jpeg
+Allow: /assets/*.gif
+Allow: /assets/*.webp
+Allow: /favicon.ico
+Allow: /favicon.png
+
+# تحديد موقع خريطة الموقع
+Sitemap: https://your-domain.vercel.app/sitemap.xml
+
+# معلومات إضافية للموقع
+# اسم الموقع: مطعم لادورف
+# نوع الموقع: مطعم ومطاعم
+# اللغة: العربية والإنجليزية
+# المنطقة: مصر

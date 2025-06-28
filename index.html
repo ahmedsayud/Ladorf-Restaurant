@@ -3,24 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>مطعم لادورف - أشهى الأطباق الشرقية والعربية</title>
-    <meta name="description" content="مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية. استمتع بأشهى الأكلات واطلب الآن!" />
+    <title>مطعم لادورف - أشهى الأطباق الشرقية والعربية | طعام عربي أصيل</title>
+    <meta name="description" content="مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية. دجاج مشوي، لحوم طازجة، مشروبات طبيعية، حلويات شرقية. توصيل سريع وخدمة مميزة. اطلب الآن!" />
     <meta name="author" content="مطعم لادورف" />
-    <meta name="keywords" content="مطعم, مطعم لادورف, طعام عربي, طعام شرقي, أكلات شرقية, أكلات عربية, دجاج, لحوم, مشروبات, كنافة, معصوب, توصيل, وجبات, مأكولات, مطبخ عربي" />
-    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="مطعم, مطعم لادورف, طعام عربي, طعام شرقي, أكلات شرقية, أكلات عربية, دجاج مشوي, لحوم طازجة, مشروبات طبيعية, كنافة, معصوب, توصيل, وجبات, مأكولات, مطبخ عربي, مطعم في مصر, طعام صحي, أكلات تقليدية" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#e7c565" />
+    <meta name="color-scheme" content="light dark" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://your-domain.vercel.app/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/favicon.png" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Structured Data for Restaurant -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "مطعم لادورف",
+      "description": "مطعم يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة",
+      "url": "https://your-domain.vercel.app/",
+      "telephone": "+20-XXX-XXX-XXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "EG",
+        "addressLocality": "مصر"
+      },
+      "servesCuisine": ["مطبخ عربي", "مطبخ شرقي", "مأكولات تقليدية"],
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 10:00-23:00",
+      "menu": "https://your-domain.vercel.app/menu",
+      "image": "https://your-domain.vercel.app/assets/restaurant-logo.png",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "reviewCount": "150"
+      }
+    }
+    </script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="مطعم لادورف - أشهى الأطباق الشرقية والعربية" />
-    <meta property="og:description" content="مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية. استمتع بأشهى الأكلات واطلب الآن!" />
+    <meta property="og:description" content="مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية. دجاج مشوي، لحوم طازجة، مشروبات طبيعية، حلويات شرقية. توصيل سريع وخدمة مميزة." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ahmedsayud.github.io/lawref-online-eats/" />
+    <meta property="og:url" content="https://your-domain.vercel.app/" />
+    <meta property="og:image" content="https://your-domain.vercel.app/assets/restaurant-logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="ar_EG" />
+    <meta property="og:site_name" content="مطعم لادورف" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="مطعم لادورف - أشهى الأطباق الشرقية والعربية" />
-    <meta name="twitter:description" content="مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية. استمتع بأشهى الأكلات واطلب الآن!" />
+    <meta name="twitter:description" content="مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية. دجاج مشوي، لحوم طازجة، مشروبات طبيعية، حلويات شرقية." />
+    <meta name="twitter:image" content="https://your-domain.vercel.app/assets/restaurant-logo.png" />
     <meta name="twitter:site" content="@lawref_restaurant" />
+    <meta name="twitter:creator" content="@lawref_restaurant" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="EG" />
+    <meta name="geo.placename" content="مصر" />
+    <meta name="geo.position" content="30.0444;31.2357" />
+    <meta name="ICBM" content="30.0444, 31.2357" />
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="ar" href="https://your-domain.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://your-domain.vercel.app/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://your-domain.vercel.app/" />
   </head>
 
   <body>

@@ -1,73 +1,145 @@
-# Welcome to your Lovable project
+# 🍽️ مطعم لادورف - موقع طعام إلكتروني
 
-## Project info
+## 📋 نظرة عامة
 
-**URL**: https://lovable.dev/projects/c7f84efe-fe5d-44ec-b68b-57637b7d8afd
+موقع إلكتروني متطور لمطعم لادورف يقدم أشهى الأطباق الشرقية والعربية. يتيح للعملاء تصفح القائمة، إضافة الأطباق إلى السلة، وإتمام عملية الطلب بسهولة.
 
-## How can I edit this code?
+## ✨ المميزات
 
-There are several ways of editing your application.
+- 🍕 **قائمة طعام تفاعلية** - تصفح الأطباق حسب الفئات
+- 🛒 **سلة مشتريات ذكية** - إضافة وإزالة الأطباق بسهولة
+- 📱 **تصميم متجاوب** - يعمل على جميع الأجهزة
+- 🔐 **نظام تسجيل دخول** - للمستخدمين والإدارة
+- 👨‍💼 **لوحة إدارة** - لإدارة المنتجات والطلبات
+- 🌐 **دعم اللغة العربية** - واجهة عربية كاملة
+- ⚡ **سرعة عالية** - مبني بـ Vite و React
 
-**Use Lovable**
+## 🛠️ التقنيات المستخدمة
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c7f84efe-fe5d-44ec-b68b-57637b7d8afd) and start prompting.
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Build Tool**: Vite
+- **State Management**: React Context
+- **Routing**: React Router
+- **Icons**: Lucide React
+- **Deployment**: Vercel
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 التثبيت والتشغيل
 
-**Use your preferred IDE**
+### المتطلبات الأساسية
+- Node.js (الإصدار 18 أو أحدث)
+- npm أو yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### خطوات التثبيت
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# 1. استنساخ المشروع
+git clone https://github.com/your-username/ladorf-restaurant.git
 
-Follow these steps:
+# 2. الانتقال إلى مجلد المشروع
+cd ladorf-restaurant
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 3. تثبيت التبعيات
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4. تشغيل خادم التطوير
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### أوامر مفيدة
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# تشغيل خادم التطوير
+npm run dev
 
-**Use GitHub Codespaces**
+# بناء المشروع للإنتاج
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# معاينة البناء
+npm run preview
 
-## What technologies are used for this project?
+# فحص الأخطاء
+npm run lint
+```
 
-This project is built with:
+## 📁 هيكل المشروع
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+src/
+├── components/          # المكونات
+│   ├── admin/          # مكونات الإدارة
+│   ├── api/            # واجهات API
+│   └── ui/             # مكونات واجهة المستخدم
+├── contexts/           # React Contexts
+├── data/               # البيانات الثابتة
+├── hooks/              # Custom Hooks
+├── pages/              # صفحات التطبيق
+├── types/              # تعريفات TypeScript
+└── lib/                # مكتبات مساعدة
+```
 
-## How can I deploy this project?
+## 🌐 النشر
 
-Simply open [Lovable](https://lovable.dev/projects/c7f84efe-fe5d-44ec-b68b-57637b7d8afd) and click on Share -> Publish.
+### Vercel (موصى به)
+1. اربط مستودع GitHub بـ Vercel
+2. سيتم النشر تلقائياً عند كل تحديث
+3. احصل على رابط مباشر للموقع
 
-## Can I connect a custom domain to my Lovable project?
+### GitHub Pages
+```bash
+npm run build
+# ارفع محتويات مجلد dist إلى GitHub Pages
+```
 
-Yes, you can!
+## 🔧 الإعدادات
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### متغيرات البيئة
+```env
+VITE_API_BASE_URL=https://your-api-domain.com
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### تكوين API
+يتم تكوين رابط API في `src/components/api/ConfigApi.ts`
+
+## 📱 تحسين محركات البحث (SEO)
+
+تم تحسين الموقع لظهور أفضل في محركات البحث من خلال:
+
+- ✅ ملف `robots.txt` محسن
+- ✅ ملف `sitemap.xml` شامل
+- ✅ Meta tags محسنة
+- ✅ Structured Data (Schema.org)
+- ✅ Open Graph tags
+- ✅ Twitter Cards
+- ✅ Web App Manifest
+
+## 🎨 التصميم
+
+- **الألوان الرئيسية**: ذهبي (#e7c565) وأبيض
+- **الخط**: خط عربي جميل ومقروء
+- **التصميم**: عصري وأنيق يناسب المطاعم الفاخرة
+
+## 📞 الدعم
+
+للاستفسارات والدعم التقني:
+- 📧 البريد الإلكتروني: support@ladorf.com
+- 📱 الهاتف: +20-XXX-XXX-XXXX
+- 🌐 الموقع: https://ladorf.com
+
+## 📄 الترخيص
+
+هذا المشروع مرخص تحت رخصة MIT.
+
+## 🤝 المساهمة
+
+نرحب بمساهماتكم! يرجى:
+
+1. عمل Fork للمشروع
+2. إنشاء فرع جديد للميزة
+3. عمل Commit للتغييرات
+4. عمل Push للفرع
+5. إنشاء Pull Request
+
+---
+
+**مطعم لادورف** - أشهى الأطباق الشرقية والعربية 🍽️✨

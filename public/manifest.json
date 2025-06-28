@@ -1,0 +1,89 @@
+{
+  "name": "مطعم لادورف - أشهى الأطباق الشرقية والعربية",
+  "short_name": "مطعم لادورف",
+  "description": "مطعم لادورف يقدم أشهى الأطباق الشرقية والعربية بنكهات أصيلة وخدمة راقية",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e7c565",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["food", "restaurant", "lifestyle"],
+  "icons": [
+    {
+      "src": "/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/restaurant-screenshot-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "الصفحة الرئيسية لمطعم لادورف"
+    },
+    {
+      "src": "/assets/restaurant-screenshot-2.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "قائمة الطعام في مطعم لادورف"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "تصفح القائمة",
+      "short_name": "القائمة",
+      "description": "تصفح قائمة الطعام الكاملة",
+      "url": "/menu",
+      "icons": [
+        {
+          "src": "/assets/menu-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "سلة المشتريات",
+      "short_name": "السلة",
+      "description": "عرض سلة المشتريات",
+      "url": "/cart",
+      "icons": [
+        {
+          "src": "/assets/cart-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "الفئات",
+      "short_name": "الفئات",
+      "description": "تصفح فئات الطعام",
+      "url": "/categories",
+      "icons": [
+        {
+          "src": "/assets/categories-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+} 
